@@ -19,7 +19,7 @@
                 </div>
             {% endfor %}
             {% if user.is_authenticated %}
-                <br><a class="btn btn-default" href="">Add Event</a>
+                <br><a class="btn btn-default" href={% url 'ticker:event-add' %}>Add Event</a>
             {% endif %}
         </div>
     </div>

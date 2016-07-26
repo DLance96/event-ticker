@@ -1,6 +1,7 @@
 from django.shortcuts import render
-import datetime
+from django.core.urlresolvers import reverse_lazy
 from .models import *
+from django.views.generic import *
 
 
 def home(request):
@@ -65,3 +66,9 @@ def home(request):
     }
 
     return render(request, "home.html", context)
+
+
+class EventAdd(CreateView):
+    model = Event
+    success_url = reverse_lazy('ticker:home')
+    fields = ['name', 'date', 'start_time', 'end_time', 'notes']
