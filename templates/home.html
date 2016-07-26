@@ -4,14 +4,23 @@
     <div class="panel panel-default">
         <div class="panel-heading">Event Ticker</div>
         <div class="panel-body">
-            <table class="table table-striped">
-                {% for event, ticker in events_ticker %}
-                <td>
-                    <tr>{{ ticker }}</tr>
-                    <tr>{{ event.date }} - {{ event.start_time }} - {{ event.date }}</tr>
-                </td>
-                {% endfor %}
-            </table>
+            {% for event, ticker in events_ticker %}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="col-md-12">
+                            {{ ticker }}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-md-12">
+                            {{ event.date }} - {{ event.start_time }} - {{ event.name }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% if user.is_authenticated %}
+                <br><a class="btn btn-default" href="">Add Event</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

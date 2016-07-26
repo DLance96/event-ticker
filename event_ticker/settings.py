@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'ticker',
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -119,3 +119,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static-root')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    #'/var/www/static/',
+)

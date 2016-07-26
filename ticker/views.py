@@ -4,9 +4,9 @@ from .models import *
 
 
 def home(request):
-    events = Event.objects.exclude(date__lte=datetime.date.today()).order_by("start_time").order_by("date")
+    events = Event.objects.exclude(date__lt=datetime.date.today()).order_by("start_time").order_by("date")
     events_today = Event.objects.filter(date=datetime.date.today()).order_by("start_time")
-    events_future = Event.objects.exclude(date__lt=datetime.date.today()).order_by("start_time").order_by("date")
+    events_future = Event.objects.exclude(date__lte=datetime.date.today()).order_by("start_time").order_by("date")
     now = datetime.datetime.now()
     ticker_list = []
 
@@ -54,8 +54,9 @@ def home(request):
                         ticker_list.append("ended %s minutes ago" % end_minute_difference)
 
     for event in events_future:
-        day_difference = event.date - now.date
-        ticker_list.append("in %s days" % day_difference)
+        today = datetime.date(now.year, now.month, now.day)
+        days_difference = (event.date - today).days
+        ticker_list.append("in %s days" % days_difference)
 
     events_ticker = zip(events, ticker_list)
 

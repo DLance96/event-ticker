@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 import datetime
 
+
 class Event(models.Model):
     name = models.CharField(max_length=45)
     date = models.DateField()
@@ -10,10 +11,5 @@ class Event(models.Model):
     end_time = models.TimeField(blank=True, null=True)
     notes = notes = models.TextField(blank=True, null=True)
 
-    def clean(self):
-        start_t = self.cleaned_data.get("start_time")
-        end_t = self.cleaned_data.get("end_time")
-
-        if end_t and end_t < start_t:
-            msg = u"End time should be greater than start time."
-            self._errors["end_time"] = self.error_class([msg])
+    def __str__(self):
+        return self.name
