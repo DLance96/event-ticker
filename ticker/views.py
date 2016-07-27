@@ -10,6 +10,7 @@ def home(request):
     events_today = Event.objects.filter(date=datetime.date.today()).order_by("start_time")
     events_future = Event.objects.exclude(date__lte=datetime.date.today()).order_by("start_time").order_by("date")
     now = timezone.localtime(timezone.now())
+
     ticker_list = []
 
     for event in events_today:
