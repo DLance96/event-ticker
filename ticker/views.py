@@ -41,11 +41,11 @@ def home(request):
                     minute_difference = now.minute + 60 - event.start_time.minute
                     ticker_list.append("started %s minutes ago" % minute_difference)
                 else:
-                    ticker_list.append("happened %s hours ago" % hour_difference)
+                    events = events.exclude(id=event.id)
             else:
                 end_hour_difference = now.hour - event.end_time.hour
                 if end_hour_difference > 1:
-                    ticker_list.append("ended %s hours ago" % end_hour_difference)
+                    events = events.exclude(id=event.id)
                 if end_hour_difference < 0:
                     ticker_list.append("happening now")
                 else:
