@@ -2,13 +2,14 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse_lazy
 from .models import *
 from django.views.generic import *
+from django.utils import timezone
 
 
 def home(request):
     events = Event.objects.exclude(date__lt=datetime.date.today()).order_by("start_time").order_by("date")
     events_today = Event.objects.filter(date=datetime.date.today()).order_by("start_time")
     events_future = Event.objects.exclude(date__lte=datetime.date.today()).order_by("start_time").order_by("date")
-    now = datetime.datetime.now()
+    now = timezone.localtime(timezone.now())
     ticker_list = []
 
     for event in events_today:
