@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.utils import timezone
 import datetime
 
 SERVER_CHOICES = (
@@ -16,7 +17,8 @@ GAMEMODE_CHOICES = (
 
 class Event(models.Model):
     name = models.CharField(max_length=45)
-    date = models.DateField(default=datetime.datetime.now())
+    host = models.CharField(max_length=40)
+    date = models.DateField(default=timezone.now)
     start_time = models.TimeField(default=datetime.time(hour=0, minute=0))
     end_time = models.TimeField(blank=True, null=True)
     server = models.CharField(choices=SERVER_CHOICES, default='UHC1', max_length=3)
