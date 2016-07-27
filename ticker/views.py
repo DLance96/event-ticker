@@ -74,3 +74,16 @@ class EventAdd(CreateView):
     model = Event
     success_url = reverse_lazy('ticker:home')
     fields = ['name', 'date', 'start_time', 'end_time', 'notes']
+
+
+class EventEdit(UpdateView):
+    model = Event
+    success_url = reverse_lazy('ticker:home')
+    fields = ['name', 'date', 'start_time', 'end_time', 'notes']
+
+
+class EventDelete(DeleteView):
+    model = Event
+    success_url = reverse_lazy('ticker:home')
+
+

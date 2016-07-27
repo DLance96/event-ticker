@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="jumbotron">
-        <h1>{% if object %}Edit{% else %}Add{% endif %} Event</h1>
+        <h1>Delete Event</h1>
     </div>
     <div class="panel panel-default">
         {% if not user.is_authenticated %}
@@ -15,12 +15,8 @@
             <div class="panel-body">
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    {% if object %}
-                        <input type="submit" value="Update"/>
-                    {% else %}
-                        <input type="submit" value="Submit"/>
-                    {% endif %}
+                    Are you sure you want to delete "{{ object }}"<br><br>
+                    <input type="submit" value="Confirm"/>
                 </form>
             </div>
         {% endif %}
