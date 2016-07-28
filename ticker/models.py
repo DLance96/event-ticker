@@ -21,7 +21,7 @@ class Event(models.Model):
     date = models.DateField(default=timezone.now)
     start_time = models.TimeField(default=datetime.time(hour=0, minute=0))
     end_time = models.TimeField(blank=True, null=True)
-    server = models.CharField(choices=SERVER_CHOICES, default='UHC1', max_length=3)
+    server = models.CharField(choices=SERVER_CHOICES, default='UHC1', max_length=4)
     gamemode = models.CharField(choices=GAMEMODE_CHOICES, default='UHC', max_length=3)
     team_size = models.IntegerField(default=1)
     notes = notes = models.TextField(blank=True, null=True)
