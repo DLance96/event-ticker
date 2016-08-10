@@ -10,7 +10,7 @@
                     {% for event, ticker in events_ticker %}
                     <tr>
                         <td>{{ ticker }}</td>
-                        <td>[{{ event.server }}] {{ event.date }} - {{ event.start_time }} - {{ event.name }}
+                        <td>[{{ event.server }}] {{ event.date }} - {{ event.start_time }} - {{ event.name }} - {{ event.gamemode }}
                         {% if user.is_authenticated %}
                             <td><a class="btn btn-default" href={% url 'ticker:event-edit' event.id %}>Edit</a></td>
                             <td><a class="btn btn-default" href={% url 'ticker:event-delete' event.id %}>Delete</a></td>
